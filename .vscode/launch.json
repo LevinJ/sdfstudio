@@ -27,6 +27,14 @@
       "justMyCode": true
     },
     {
+      "name": "train nsg_depth_normal",
+      "type": "python",
+      "request": "launch",
+      "program": "scripts/train.py",
+      "console": "integratedTerminal",
+      "args": ["nsg_depth_normal","sdfstudio-data","--data","data/sdfstudio-demo-data/replica-room0"]
+    },
+    {
       "name": "Python: train",
       "type": "python",
       "request": "launch",

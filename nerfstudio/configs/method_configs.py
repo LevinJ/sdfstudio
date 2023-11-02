@@ -45,22 +45,26 @@ from nerfstudio.data.dataparsers.phototourism_dataparser import (
     PhototourismDataParserConfig,
 )
 from nerfstudio.data.dataparsers.sdfstudio_dataparser import SDFStudioDataParserConfig
-from nerfstudio.engine.optimizers import AdamOptimizerConfig, RAdamOptimizerConfig, AdamWOptimizerConfig
+from nerfstudio.engine.optimizers import (
+    AdamOptimizerConfig,
+    AdamWOptimizerConfig,
+    RAdamOptimizerConfig,
+)
 from nerfstudio.engine.schedulers import (
     ExponentialSchedulerConfig,
     MultiStepSchedulerConfig,
-    NeuSSchedulerConfig,
     MultiStepWarmupSchedulerConfig,
+    NeuSSchedulerConfig,
 )
 from nerfstudio.field_components.temporal_distortions import TemporalDistortionKind
 from nerfstudio.fields.sdf_field import SDFFieldConfig
+from nerfstudio.models.bakedangelo import BakedAngeloModelConfig
 from nerfstudio.models.bakedsdf import BakedSDFModelConfig
 from nerfstudio.models.dto import DtoOModelConfig
 from nerfstudio.models.instant_ngp import InstantNGPModelConfig
 from nerfstudio.models.mipnerf import MipNerfModel
 from nerfstudio.models.nerfacto import NerfactoModelConfig
 from nerfstudio.models.neuralangelo import NeuralangeloModelConfig
-from nerfstudio.models.bakedangelo import BakedAngeloModelConfig
 from nerfstudio.models.neuralreconW import NeuralReconWModelConfig
 from nerfstudio.models.neus import NeuSModelConfig
 from nerfstudio.models.neus_acc import NeuSAccModelConfig
@@ -114,7 +118,8 @@ method_configs["bakedangelo"] = Config(
         steps_per_eval_image=5000,
         steps_per_eval_batch=5000,
         steps_per_save=20000,
-        steps_per_eval_all_images=1000000,  # set to a very large model so we don't eval with all images
+        # set to a very large model so we don't eval with all images
+        steps_per_eval_all_images=1000000,
         max_num_iterations=1000_001,
         mixed_precision=False,
     ),
@@ -187,7 +192,8 @@ method_configs["neuralangelo"] = Config(
         steps_per_eval_image=5000,
         steps_per_eval_batch=5000,
         steps_per_save=20000,
-        steps_per_eval_all_images=1000000,  # set to a very large model so we don't eval with all images
+        # set to a very large model so we don't eval with all images
+        steps_per_eval_all_images=1000000,
         max_num_iterations=500_001,
         mixed_precision=False,
     ),
@@ -249,7 +255,8 @@ method_configs["bakedsdf"] = Config(
         steps_per_eval_image=5000,
         steps_per_eval_batch=5000,
         steps_per_save=20000,
-        steps_per_eval_all_images=1000000,  # set to a very large model so we don't eval with all images
+        # set to a very large model so we don't eval with all images
+        steps_per_eval_all_images=1000000,
         max_num_iterations=250001,
         mixed_precision=False,
     ),
@@ -316,7 +323,8 @@ method_configs["bakedsdf-mlp"] = Config(
         steps_per_eval_image=5000,
         steps_per_eval_batch=5000,
         steps_per_save=20000,
-        steps_per_eval_all_images=1000000,  # set to a very large model so we don't eval with all images
+        # set to a very large model so we don't eval with all images
+        steps_per_eval_all_images=1000000,
         max_num_iterations=250001,
         mixed_precision=False,
     ),
@@ -384,7 +392,8 @@ method_configs["neus-facto-angelo"] = Config(
         steps_per_eval_image=5000,
         steps_per_eval_batch=5000,
         steps_per_save=20000,
-        steps_per_eval_all_images=1000000,  # set to a very large model so we don't eval with all images
+        # set to a very large model so we don't eval with all images
+        steps_per_eval_all_images=1000000,
         max_num_iterations=1000_001,
         mixed_precision=False,
     ),
@@ -455,7 +464,8 @@ method_configs["neus-facto"] = Config(
         steps_per_eval_image=5000,
         steps_per_eval_batch=5000,
         steps_per_save=20000,
-        steps_per_eval_all_images=1000000,  # set to a very large model so we don't eval with all images
+        # set to a very large model so we don't eval with all images
+        steps_per_eval_all_images=1000000,
         max_num_iterations=20001,
         mixed_precision=False,
     ),
@@ -506,7 +516,8 @@ method_configs["neus-facto-bigmlp"] = Config(
         steps_per_eval_image=5000,
         steps_per_eval_batch=5000,
         steps_per_save=20000,
-        steps_per_eval_all_images=1000000,  # set to a very large model so we don't eval with all images
+        # set to a very large model so we don't eval with all images
+        steps_per_eval_all_images=1000000,
         max_num_iterations=100001,
         mixed_precision=False,
     ),
@@ -547,7 +558,8 @@ method_configs["geo-volsdf"] = Config(
         steps_per_eval_image=5000,
         steps_per_eval_batch=5000,
         steps_per_save=20000,
-        steps_per_eval_all_images=1000000,  # set to a very large model so we don't eval with all images
+        # set to a very large model so we don't eval with all images
+        steps_per_eval_all_images=1000000,
         max_num_iterations=200001,
         mixed_precision=False,
     ),
@@ -560,7 +572,8 @@ method_configs["geo-volsdf"] = Config(
                 mode="off", optimizer=AdamOptimizerConfig(lr=6e-4, eps=1e-8, weight_decay=1e-2)
             ),
         ),
-        model=VolSDFModelConfig(patch_warp_loss_mult=0.1, eval_num_rays_per_chunk=1024),
+        model=VolSDFModelConfig(patch_warp_loss_mult=0.1,
+                                eval_num_rays_per_chunk=1024),
     ),
     optimizers={
         "fields": {
@@ -584,7 +597,8 @@ method_configs["monosdf"] = Config(
         steps_per_eval_image=5000,
         steps_per_eval_batch=5000,
         steps_per_save=20000,
-        steps_per_eval_all_images=1000000,  # set to a very large model so we don't eval with all images
+        # set to a very large model so we don't eval with all images
+        steps_per_eval_all_images=1000000,
         max_num_iterations=200000,
         mixed_precision=False,
     ),
@@ -597,7 +611,8 @@ method_configs["monosdf"] = Config(
                 mode="off", optimizer=AdamOptimizerConfig(lr=6e-4, eps=1e-8, weight_decay=1e-2)
             ),
         ),
-        model=VolSDFModelConfig(mono_depth_loss_mult=0.1, mono_normal_loss_mult=0.05, eval_num_rays_per_chunk=1024),
+        model=VolSDFModelConfig(
+            mono_depth_loss_mult=0.1, mono_normal_loss_mult=0.05, eval_num_rays_per_chunk=1024),
     ),
     optimizers={
         "fields": {
@@ -619,7 +634,8 @@ method_configs["volsdf"] = Config(
         steps_per_eval_image=5000,
         steps_per_eval_batch=5000,
         steps_per_save=20000,
-        steps_per_eval_all_images=1000000,  # set to a very large model so we don't eval with all images
+        # set to a very large model so we don't eval with all images
+        steps_per_eval_all_images=1000000,
         max_num_iterations=100000,
         mixed_precision=False,
     ),
@@ -654,7 +670,8 @@ method_configs["geo-neus"] = Config(
         steps_per_eval_image=500,
         steps_per_eval_batch=5000,
         steps_per_save=20000,
-        steps_per_eval_all_images=1000000,  # set to a very large model so we don't eval with all images
+        # set to a very large model so we don't eval with all images
+        steps_per_eval_all_images=1000000,
         max_num_iterations=200000,
         mixed_precision=False,
     ),
@@ -667,7 +684,8 @@ method_configs["geo-neus"] = Config(
                 mode="off", optimizer=AdamOptimizerConfig(lr=6e-4, eps=1e-8, weight_decay=1e-2)
             ),
         ),
-        model=NeuSModelConfig(patch_warp_loss_mult=0.1, eval_num_rays_per_chunk=1024),
+        model=NeuSModelConfig(patch_warp_loss_mult=0.1,
+                              eval_num_rays_per_chunk=1024),
     ),
     optimizers={
         "fields": {
@@ -689,7 +707,8 @@ method_configs["mono-neus"] = Config(
         steps_per_eval_image=500,
         steps_per_eval_batch=5000,
         steps_per_save=20000,
-        steps_per_eval_all_images=1000000,  # set to a very large model so we don't eval with all images
+        # set to a very large model so we don't eval with all images
+        steps_per_eval_all_images=1000000,
         max_num_iterations=100000,
         mixed_precision=False,
     ),
@@ -702,7 +721,8 @@ method_configs["mono-neus"] = Config(
                 mode="off", optimizer=AdamOptimizerConfig(lr=6e-4, eps=1e-8, weight_decay=1e-2)
             ),
         ),
-        model=NeuSModelConfig(mono_depth_loss_mult=0.1, mono_normal_loss_mult=0.05, eval_num_rays_per_chunk=1024),
+        model=NeuSModelConfig(
+            mono_depth_loss_mult=0.1, mono_normal_loss_mult=0.05, eval_num_rays_per_chunk=1024),
     ),
     optimizers={
         "fields": {
@@ -724,7 +744,8 @@ method_configs["neus"] = Config(
         steps_per_eval_image=500,
         steps_per_eval_batch=5000,
         steps_per_save=20000,
-        steps_per_eval_all_images=1000000,  # set to a very large model so we don't eval with all images
+        # set to a very large model so we don't eval with all images
+        steps_per_eval_all_images=1000000,
         max_num_iterations=100000,
         mixed_precision=False,
     ),
@@ -759,7 +780,8 @@ method_configs["unisurf"] = Config(
         steps_per_eval_image=500,
         steps_per_eval_batch=5000,
         steps_per_save=20000,
-        steps_per_eval_all_images=1000000,  # set to a very large model so we don't eval with all images
+        # set to a very large model so we don't eval with all images
+        steps_per_eval_all_images=1000000,
         max_num_iterations=100000,
         mixed_precision=False,
     ),
@@ -794,7 +816,8 @@ method_configs["mono-unisurf"] = Config(
         steps_per_eval_image=500,
         steps_per_eval_batch=5000,
         steps_per_save=20000,
-        steps_per_eval_all_images=1000000,  # set to a very large model so we don't eval with all images
+        # set to a very large model so we don't eval with all images
+        steps_per_eval_all_images=1000000,
         max_num_iterations=100000,
         mixed_precision=False,
     ),
@@ -807,7 +830,8 @@ method_configs["mono-unisurf"] = Config(
                 mode="off", optimizer=AdamOptimizerConfig(lr=6e-4, eps=1e-8, weight_decay=1e-2)
             ),
         ),
-        model=UniSurfModelConfig(mono_depth_loss_mult=0.1, mono_normal_loss_mult=0.05, eval_num_rays_per_chunk=1024),
+        model=UniSurfModelConfig(
+            mono_depth_loss_mult=0.1, mono_normal_loss_mult=0.05, eval_num_rays_per_chunk=1024),
     ),
     optimizers={
         "fields": {
@@ -829,7 +853,8 @@ method_configs["geo-unisurf"] = Config(
         steps_per_eval_image=500,
         steps_per_eval_batch=5000,
         steps_per_save=20000,
-        steps_per_eval_all_images=1000000,  # set to a very large model so we don't eval with all images
+        # set to a very large model so we don't eval with all images
+        steps_per_eval_all_images=1000000,
         max_num_iterations=100000,
         mixed_precision=False,
     ),
@@ -842,7 +867,8 @@ method_configs["geo-unisurf"] = Config(
                 mode="off", optimizer=AdamOptimizerConfig(lr=6e-4, eps=1e-8, weight_decay=1e-2)
             ),
         ),
-        model=UniSurfModelConfig(patch_warp_loss_mult=0.1, eval_num_rays_per_chunk=1024),
+        model=UniSurfModelConfig(
+            patch_warp_loss_mult=0.1, eval_num_rays_per_chunk=1024),
     ),
     optimizers={
         "fields": {
@@ -864,7 +890,8 @@ method_configs["dto"] = Config(
         steps_per_eval_image=2000,
         steps_per_eval_batch=5000,
         steps_per_save=5000,
-        steps_per_eval_all_images=1000000,  # set to a very large model so we don't eval with all images
+        # set to a very large model so we don't eval with all images
+        steps_per_eval_all_images=1000000,
         max_num_iterations=100000,
         mixed_precision=False,
     ),
@@ -903,7 +930,8 @@ method_configs["neusW"] = Config(
         steps_per_eval_image=5000,
         steps_per_eval_batch=5000,
         steps_per_save=5000,
-        steps_per_eval_all_images=1000000,  # set to a very large model so we don't eval with all images
+        # set to a very large model so we don't eval with all images
+        steps_per_eval_all_images=1000000,
         max_num_iterations=100000,
         mixed_precision=False,
     ),
@@ -940,7 +968,8 @@ method_configs["neus-acc"] = Config(
         steps_per_eval_image=5000,
         steps_per_eval_batch=5000,
         steps_per_save=20000,
-        steps_per_eval_all_images=1000000,  # set to a very large model so we don't eval with all images
+        # set to a very large model so we don't eval with all images
+        steps_per_eval_all_images=1000000,
         max_num_iterations=20000,
         mixed_precision=False,
     ),
@@ -1011,8 +1040,10 @@ method_configs["instant-ngp"] = Config(
         steps_per_eval_all_images=20000,
     ),
     pipeline=DynamicBatchPipelineConfig(
-        datamanager=VanillaDataManagerConfig(dataparser=NerfstudioDataParserConfig(), train_num_rays_per_batch=8192),
-        model=InstantNGPModelConfig(render_step_size=0.005, eval_num_rays_per_chunk=8192),
+        datamanager=VanillaDataManagerConfig(
+            dataparser=NerfstudioDataParserConfig(), train_num_rays_per_batch=8192),
+        model=InstantNGPModelConfig(
+            render_step_size=0.005, eval_num_rays_per_chunk=8192),
     ),
     optimizers={
         "fields": {
@@ -1027,7 +1058,8 @@ method_configs["instant-ngp"] = Config(
 method_configs["mipnerf"] = Config(
     method_name="mipnerf",
     pipeline=VanillaPipelineConfig(
-        datamanager=VanillaDataManagerConfig(dataparser=NerfstudioDataParserConfig(), train_num_rays_per_batch=1024),
+        datamanager=VanillaDataManagerConfig(
+            dataparser=NerfstudioDataParserConfig(), train_num_rays_per_batch=1024),
         model=VanillaModelConfig(
             _target=MipNerfModel,
             loss_coefficients={"rgb_loss_coarse": 0.1, "rgb_loss_fine": 1.0},
@@ -1113,7 +1145,8 @@ method_configs["tensorf"] = Config(
 method_configs["dnerf"] = Config(
     method_name="dnerf",
     pipeline=VanillaPipelineConfig(
-        datamanager=VanillaDataManagerConfig(dataparser=DNeRFDataParserConfig()),
+        datamanager=VanillaDataManagerConfig(
+            dataparser=DNeRFDataParserConfig()),
         model=VanillaModelConfig(
             _target=NeRFModel,
             enable_temporal_distortion=True,
@@ -1139,7 +1172,8 @@ method_configs["phototourism"] = Config(
     ),
     pipeline=VanillaPipelineConfig(
         datamanager=VariableResDataManagerConfig(  # NOTE: one of the only differences with nerfacto
-            dataparser=PhototourismDataParserConfig(),  # NOTE: one of the only differences with nerfacto
+            # NOTE: one of the only differences with nerfacto
+            dataparser=PhototourismDataParserConfig(),
             train_num_rays_per_batch=4096,
             eval_num_rays_per_batch=4096,
             camera_optimizer=CameraOptimizerConfig(
@@ -1162,9 +1196,68 @@ method_configs["phototourism"] = Config(
     vis="viewer",
 )
 
+method_configs["nsg_depth_normal"] = Config(
+    method_name="nsg_depth_normal",
+    trainer=TrainerConfig(
+        steps_per_eval_image=500,
+        steps_per_eval_batch=5000,
+        steps_per_save=2000,
+        # set to a very large model so we don't eval with all images
+        save_only_latest_checkpoint=True,
+        steps_per_eval_all_images=5000,
+        max_num_iterations=20001,
+        mixed_precision=False,
+    ),
+    pipeline=VanillaPipelineConfig(
+        datamanager=VanillaDataManagerConfig(
+            dataparser=SDFStudioDataParserConfig(
+                include_mono_prior=True,
+            ),
+            train_num_rays_per_batch=2048,
+            eval_num_rays_per_batch=1024,
+            camera_optimizer=CameraOptimizerConfig(
+                mode="off", optimizer=AdamOptimizerConfig(lr=6e-4, eps=1e-8, weight_decay=1e-2)
+            ),
+        ),
+        model=NeuSFactoModelConfig(
+            sdf_field=SDFFieldConfig(
+                use_grid_feature=True,
+                num_layers=2,
+                num_layers_color=2,
+                hidden_dim=256,
+                bias=0.5,
+                beta_init=0.3,
+                use_appearance_embedding=False,
+                inside_outside=True,
+            ),
+            background_model="none",
+            mono_depth_loss_mult=0.1,
+            mono_normal_loss_mult=0.05,
+            eval_num_rays_per_chunk=1024,
+        ),
+    ),
+    optimizers={
+        "proposal_networks": {
+            "optimizer": AdamOptimizerConfig(lr=1e-2, eps=1e-15),
+            "scheduler": MultiStepSchedulerConfig(max_steps=20000),
+        },
+        "fields": {
+            "optimizer": AdamOptimizerConfig(lr=5e-4, eps=1e-15),
+            "scheduler": NeuSSchedulerConfig(warm_up_end=500, learning_rate_alpha=0.05, max_steps=20000),
+        },
+        "field_background": {
+            "optimizer": AdamOptimizerConfig(lr=5e-4, eps=1e-15),
+            "scheduler": NeuSSchedulerConfig(warm_up_end=500, learning_rate_alpha=0.05, max_steps=20000),
+        },
+    },
+    viewer=ViewerConfig(num_rays_per_chunk=1 << 15),
+    vis="wandb",
+)
+
 AnnotatedBaseConfigUnion = tyro.conf.SuppressFixed[  # Don't show unparseable (fixed) arguments in helptext.
     tyro.conf.FlagConversionOff[
-        tyro.extras.subcommand_type_from_defaults(defaults=method_configs, descriptions=descriptions)
+        tyro.extras.subcommand_type_from_defaults(
+            defaults=method_configs, descriptions=descriptions)
     ]
 ]
 """Union[] type over config types, annotated with default instances for use with
